@@ -1,0 +1,68 @@
+To Enable Internet
+
+Commands - 
+
+sudo ifconfig enp0s25 192.168.1.2
+sudo route add default gw 192.168.1.1
+
+sudo gedit /etc/resolv.conf
+nameserver 8.8.8.8
+
+------------------------------------------
+
+configuring with pppoeconf
+
+sudo pppoeconf enp0s25 
+
+where enp0s25 is your ethernet name
+you can check that using ifconfig command.
+
+
+
+while configuring this message occurs
+
+If you continue with this program, these configuration files will  │ 
+│ be modified : /etc/ppp/peers/dsl-provider /etc/network/interfaces  │ 
+│ and /etc/ppp/*-secrets. Please make sure that you have a backup    │ 
+│ copy before saying Yes.                                            │ 
+│                                                                    │ 
+│ Continue with configuration? 
+
+---------------------------------------------------------------------------------------------------------
+
+This may help
+https://askubuntu.com/questions/252405/ubuntu-server-first-start
+
+
+you can configure ip as follows
+
+ifconfig eth0 10.0.10.10 netmask 255.255.255.0 up
+or static
+
+edit /etc/network/interfaces
+
+auto eth0
+  iface eth0 inet static
+    address 10.0.10.10
+    netmask 255.255.255.0
+    gateway 10.10.0.1
+then
+
+/etc/init.d/networking restart
+
+
+The DSL connection has been triggered. You can use the     │
+│ "plog" command to see the status or "ip addr show ppp0"  │ 
+│ for general interface info.
+
+
+Aug 10 20:31:14 anurag-desktop pppd[3593]: Timeout waiting for PADO packets
+Aug 10 20:31:14 anurag-desktop pppd[3593]: Unable to complete PPPoE Discovery
+Aug 10 20:32:19 anurag-desktop pppd[3593]: Timeout waiting for PADO packets
+Aug 10 20:32:19 anurag-desktop pppd[3593]: Unable to complete PPPoE Discovery
+Aug 10 20:33:24 anurag-desktop pppd[3593]: Timeout waiting for PADO packets
+Aug 10 20:33:24 anurag-desktop pppd[3593]: Unable to complete PPPoE Discovery
+Aug 10 20:34:29 anurag-desktop pppd[3593]: Timeout waiting for PADO packets
+Aug 10 20:34:29 anurag-desktop pppd[3593]: Unable to complete PPPoE Discovery
+Aug 10 20:34:50 anurag-desktop pppd[3836]: Plugin rp-pppoe.so loaded.
+Aug 10 20:34:50 anurag-desktop pppd[3837]: pppd 2.4.7 started by anurag, uid 1000

@@ -1,0 +1,33 @@
+https://help.ubuntu.com/community/ADSLPPPoE
+
+THe problem is with MTU size in the network.
+If it is greater than 1500 then it won't work.
+
+
+pppoeconf
+On the console or in your terminal session type:
+
+
+sudo pppoeconf
+A text-based menu program will guide you through the next steps, which are:
+
+Confirm that your Ethernet card is detected.
+Enter your username (provided by your ISP).
+Enter your password (provided by your ISP).
+If you already have a PPPoE Connection configured, you will be asked if it may be modified.
+Popular options: you are asked if you want the 'noauth' and 'defaultroute' options and to remove 'nodetach' - choose "Yes".
+Use peer DNS - choose "Yes".
+Limited MSS problem - choose "Yes".
+When you are asked if you want to connect at start up, you will probably want to say yes. (This option does not work) See the secton "Connecting on Boot"
+Finally you are asked if you want to establish the connection immediately.
+Once you have finished these steps, your connection should be working.
+
+Manual connection control
+To start your ADSL connection on demand, in a terminal type:
+pon dsl-provider
+
+
+To stop your ADSL connection, in a terminal type:
+poff dsl-provider
+
+in most cases, you can just type "poff" to stop the ADSL connection and unload the module.
